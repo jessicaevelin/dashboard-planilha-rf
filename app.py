@@ -33,13 +33,13 @@ def process_txt(uploaded_file):
 
     for ativo in range(len(lista_ativos)-1):
 
-    # seleciona as linhas o ativo atual e o proxímo, reseta o índice e transforma linha em coluna
+    # seleciona as linhas o ativo atual e o próximo, reseta o índice e transforma linha em coluna
         df_temp = df_txt.loc[lista_ativos.index[ativo]:lista_ativos.index[ativo+1]-1].reset_index(drop=True).transpose()
 
     # concatena as informações anteriores com a nova
         df_Bruto = pd.concat([df_Bruto, df_temp], sort=False)
 
-    # selecionando as linhas com dados importantes, como a tabela tem tamnho de informações iguais, preciso selecionar elas
+    # selecionando as linhas com dados importantes, como a tabela tem tamanho de informações iguais, preciso selecionar elas
 
     # backup
     df = df_Bruto
