@@ -1,8 +1,10 @@
 import streamlit as st
 import pandas as pd
-import base64
-import io
 import datetime as dt
+import pandas as pd
+from io import BytesIO
+from pyxlsb import open_workbook as open_xlsb
+
 
 st.set_page_config(layout="wide")
 
@@ -74,14 +76,18 @@ def verificar_arquivos_enviados(uploaded_file1, uploaded_file2, uploaded_file3):
     else:
         return True
 
-def download_excel(df):
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        df.to_excel(writer, index=False)
-    excel_data = output.getvalue()
-    b64 = base64.b64encode(excel_data).decode()  # Codifica para base64
-    href = f'<a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="RF {dataHoje} .xlsx">Clique aqui para fazer o download da planilha'
-    return href
+def to_excel(df):
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, index=False, sheet_name='Sheet1')
+    workbook = writer.book
+    worksheet = writer.sheets['Sheet1']
+    format1 = workbook.add_format({'num_format': '0.00'}) 
+    worksheet.set_column('A:A', None, format1)  
+    writer.save()
+    processed_data = output.getvalue()
+    return processed_data
+
 
 def main():
     
@@ -141,7 +147,11 @@ def main():
         
         # Botão de download
         st.subheader("3. Download")
-        st.markdown(download_excel(rf), unsafe_allow_html=True)
+        df_xlsx = to_excel(rf)
+        st.download_button(label='📥 Clique aqui para fazer o download 📥',
+                                data=df_xlsx ,
+                                file_name= f'RF {dataHoje}.xlsx')
+        
 
     else:
     # Mensagem para o usuário enviar os arquivos restantes
