@@ -3,7 +3,6 @@ import pandas as pd
 import datetime as dt
 import pandas as pd
 import io
-#from pyxlsb import open_workbook as open_xlsb
 import xlsxwriter
 from io import BytesIO
 
@@ -149,9 +148,9 @@ def main():
 
         # Criar o botão de download
         st.download_button(
-            label="Download Excel workbook",
+            label="Clique aqui para fazer o download",
             data=output.getvalue(),
-            file_name="workbook.xlsx",
+            file_name=f"RF {dataHoje}.xlsx",
             mime="application/vnd.ms-excel"
         )
                 
