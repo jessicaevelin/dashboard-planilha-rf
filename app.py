@@ -126,7 +126,7 @@ def main():
             
         # privado completo
         df4 = pd.concat([df3, df2], axis=0)
-        df4 = df4.drop_duplicates(['Ativo', 'Vencimento', 'Carência', 'TaxaMin', 'TaxaMax'],keep='first')
+        df4 = df4.drop_duplicates(['Ativo', 'Vencimento', 'Carência', 'Taxa', 'TaxaMax', 'PU', 'Qtd Min', 'Qtd Disp', 'Rating', 'ROA', 'Risco XP'],keep='first')
 
         # RF
         rf = pd.concat([df1, df4], axis=0) 
