@@ -1,3 +1,5 @@
+# Jessica Evelin @jessicaevelin
+
 import streamlit as st
 import pandas as pd
 import datetime as dt
@@ -107,19 +109,19 @@ def main():
         # bancario    
             df1 = process_txt(uploaded_file1)
             df1.drop([1], axis=1, inplace=True)
-            df1.columns = ['Ativo', 'Vencimento', 'Carência', 'TaxaMin', 'TaxaMax', 'PU', 'Qtd Min', 'Qtd Disp', 'Rating', 'ROA', 'Risco XP', 'IR']
+            df1.columns = ['Ativo', 'Vencimento', 'Carência', 'Taxa', 'TaxaMax', 'PU', 'Qtd Min', 'Qtd Disp', 'Rating', 'ROA', 'Risco XP', 'IR']
         
         if uploaded_file2 is not None:
             # privado incompleto
             df2 = process_txt(uploaded_file2)
             df2.drop([1], axis=1, inplace=True)
-            df2.columns = ['Ativo', 'Vencimento', 'Carência', 'TaxaMin', 'TaxaMax', 'PU', 'Qtd Min', 'Qtd Disp', 'Rating', 'ROA', 'Risco XP', 'IR']
+            df2.columns = ['Ativo', 'Vencimento', 'Carência', 'Taxa', 'TaxaMax', 'PU', 'Qtd Min', 'Qtd Disp', 'Rating', 'ROA', 'Risco XP', 'IR']
         
         if uploaded_file3 is not None:
         # debentures
             df3 = process_txt(uploaded_file3)
             df3.drop([1], axis=1, inplace=True)
-            df3.columns = ['Ativo', 'Vencimento', 'Carência', 'TaxaMin', 'TaxaMax', 'PU', 'Qtd Min', 'Qtd Disp', 'Rating', 'ROA', 'Risco XP', 'IR']
+            df3.columns = ['Ativo', 'Vencimento', 'Carência', 'Taxa', 'TaxaMax', 'PU', 'Qtd Min', 'Qtd Disp', 'Rating', 'ROA', 'Risco XP', 'IR']
             df3['IR'] = 'Isento'
             
         # privado completo
